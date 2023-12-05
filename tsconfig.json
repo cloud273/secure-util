@@ -3,8 +3,12 @@
     "target": "ES5",
     "module": "CommonJS",
     "outDir": "./dist",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "allowJs": true,
+    "isolatedModules": true,
     "strict": true,
+    "incremental": true,
     "declaration": true
   },
   "include": ["src/**/*", "./index.ts"],
