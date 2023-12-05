@@ -3,6 +3,8 @@
     "target": "ES5",
     "module": "CommonJS",
     "outDir": "./dist",
+    "allowJs": true,
+    "strict": true,
     "declaration": true
   },
   "include": ["src/**/*", "./index.ts"],
