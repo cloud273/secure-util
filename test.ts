@@ -1,4 +1,4 @@
-import { AESUtils, EtherUtils } from './index'
+import { AESUtil, EcdsaUtil } from './index'
 
 const randomInput = (): string => {
   const characters =
@@ -13,8 +13,8 @@ const randomInput = (): string => {
 
 const testAes = (): boolean => {
   const input = randomInput()
-  const encrypted = AESUtils.encrypt(input, 'key')
-  const origin = AESUtils.decrypt(encrypted, 'key')
+  const encrypted = AESUtil.encrypt(input, 'key')
+  const origin = AESUtil.decrypt(encrypted, 'key')
   // console.log(
   //   `
   //   testAES:
@@ -27,18 +27,18 @@ const testAes = (): boolean => {
   return input === origin
 }
 
-const testEther = (): boolean => {
+const testEcdsa = (): boolean => {
   const input = randomInput()
-  const keyPair = EtherUtils.generateKeyPair()
-  const signature = EtherUtils.signMessage(input, keyPair.privateKey)
-  const verifySignature = EtherUtils.verifySignature(
+  const keyPair = EcdsaUtil.generateKeyPair()
+  const signature = EcdsaUtil.signMessage(input, keyPair.privateKey)
+  const verifySignature = EcdsaUtil.verifySignature(
     input,
     signature,
     keyPair.publicKey,
   )
   // console.log(
   //   `
-  //   testEther:
+  //   testEcdsa:
   //   input = ${input}
   //   keyPair = ${JSON.stringify(keyPair)}
   //   signature = ${signature}
@@ -50,7 +50,7 @@ const testEther = (): boolean => {
 
 const test = (end: number, start: number = 1) => {
   if (start <= end) {
-    console.log(`Test ${start}: ${testAes() && testEther()}`)
+    console.log(`Test ${start}: ${testAes() && testEcdsa()}`)
     // console.log(AESUtils.computeHmac(randomInput(), 'key'))
     test(end, start + 1)
   }

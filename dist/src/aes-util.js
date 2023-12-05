@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AESUtils = void 0;
+exports.AESUtil = void 0;
 const crypto_1 = require("crypto");
-class AESUtils {
+class AESUtil {
     static encrypt(plainText, passphrase, ivHex = '879db4a13f4b69b363f7fe987f44c030') {
         const iv = Buffer.from(ivHex, 'hex');
         const key = (0, crypto_1.scryptSync)(passphrase, 'salt', 32);
@@ -26,4 +26,4 @@ class AESUtils {
         return digest;
     }
 }
-exports.AESUtils = AESUtils;
+exports.AESUtil = AESUtil;

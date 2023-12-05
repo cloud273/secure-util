@@ -5,7 +5,7 @@ import {
   scryptSync,
 } from 'crypto'
 
-export class AESUtils {
+export class AESUtil {
   public static encrypt(
     plainText: string,
     passphrase: string,
