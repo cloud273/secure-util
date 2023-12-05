@@ -5,10 +5,7 @@
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
-    "dist",
-    "!*.ts",
-    "!*.tsx",
-    "!tsconfig.json"
+    "dist"
   ],
   "scripts": {
     "build": "tsc",
