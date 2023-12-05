@@ -20,8 +20,7 @@ const testAes = (): boolean => {
   //   testAES:
   //   input = ${input}
   //   encrypted = ${encrypted}
-  //   origin = ${origin}
-
+  //   isPass = ${input === origin}
   // `,
   // )
   return input === origin
@@ -51,7 +50,7 @@ const testEcdsa = (): boolean => {
 const test = (end: number, start: number = 1) => {
   if (start <= end) {
     console.log(`Test ${start}: ${testAes() && testEcdsa()}`)
-    // console.log(AESUtils.computeHmac(randomInput(), 'key'))
+    // console.log(AESUtil.computeHmac(randomInput(), 'key'))
     test(end, start + 1)
   }
 }

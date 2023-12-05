@@ -14,8 +14,8 @@ export class AESUtil {
     const iv = Buffer.from(ivHex, 'hex')
     const key = scryptSync(passphrase, 'salt', 32)
     const cipher = createCipheriv('aes-256-cbc', Buffer.from(key), iv)
-    let encryptedText = cipher.update(plainText, 'utf-8', 'hex')
-    encryptedText += cipher.final('hex')
+    let encryptedText = cipher.update(plainText, 'utf-8', 'base64')
+    encryptedText += cipher.final('base64')
     return encryptedText
   }
 
@@ -27,7 +27,7 @@ export class AESUtil {
     const iv = Buffer.from(ivHex, 'hex')
     const key = scryptSync(passphrase, 'salt', 32)
     const decipher = createDecipheriv('aes-256-cbc', Buffer.from(key), iv)
-    let decryptedText = decipher.update(encryptedText, 'hex', 'utf-8')
+    let decryptedText = decipher.update(encryptedText, 'base64', 'utf-8')
     decryptedText += decipher.final('utf-8')
     return decryptedText
   }
@@ -35,7 +35,7 @@ export class AESUtil {
   public static computeHmac(data: string, key: string): string {
     const hmac = createHmac('sha256', key)
     hmac.update(data)
-    const digest = hmac.digest('hex')
+    const digest = hmac.digest('base64')
     return digest
   }
 }

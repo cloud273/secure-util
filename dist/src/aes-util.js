@@ -10,8 +10,8 @@ var AESUtil = /** @class */ (function () {
         var iv = Buffer.from(ivHex, 'hex');
         var key = (0, crypto_1.scryptSync)(passphrase, 'salt', 32);
         var cipher = (0, crypto_1.createCipheriv)('aes-256-cbc', Buffer.from(key), iv);
-        var encryptedText = cipher.update(plainText, 'utf-8', 'hex');
-        encryptedText += cipher.final('hex');
+        var encryptedText = cipher.update(plainText, 'utf-8', 'base64');
+        encryptedText += cipher.final('base64');
         return encryptedText;
     };
     AESUtil.decrypt = function (encryptedText, passphrase, ivHex) {
@@ -19,14 +19,14 @@ var AESUtil = /** @class */ (function () {
         var iv = Buffer.from(ivHex, 'hex');
         var key = (0, crypto_1.scryptSync)(passphrase, 'salt', 32);
         var decipher = (0, crypto_1.createDecipheriv)('aes-256-cbc', Buffer.from(key), iv);
-        var decryptedText = decipher.update(encryptedText, 'hex', 'utf-8');
+        var decryptedText = decipher.update(encryptedText, 'base64', 'utf-8');
         decryptedText += decipher.final('utf-8');
         return decryptedText;
     };
     AESUtil.computeHmac = function (data, key) {
         var hmac = (0, crypto_1.createHmac)('sha256', key);
         hmac.update(data);
-        var digest = hmac.digest('hex');
+        var digest = hmac.digest('base64');
         return digest;
     };
     return AESUtil;
