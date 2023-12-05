@@ -34,9 +34,9 @@ const testEd25519 = (random: boolean, log: boolean): boolean => {
     ? Ed25519Util.generateKeyPair()
     : {
         privateKey:
-          '60c73ca3245185119ba2f84682aef2afe9fabdf2ca090c8ba7e36bd2c65b09b2',
+          '2669ef4e064cfaf78fd1d18354861a68a5120798358a1316b4179819f90c1ab8',
         publicKey:
-          '341407b5c98ca46137a75c59b9dbe7675f0d34ca61f6602f4550a85ed0329f1e',
+          '6edcfb33abdc4130109d190f2c36b6a770d4e2ebd3a969bc0d788b6f391bb124',
       }
   const signature = Ed25519Util.signMessage(input, keyPair.privateKey)
   const verifySignature = Ed25519Util.verifySignature(
@@ -98,7 +98,14 @@ const test = (
         testEd25519(random, log)
       }`,
     )
+    // console.log(
+    //   `Test: ${Ed25519Util.verifySignature(
+    //     'test',
+    //     'a0c926a583bb62e6d83e3f6e7afa186af35b58c452896f95dddaa3e161cc7075972aefa1476cc4f554237495bd6a8f94118dc20d0728fb5e6443a4357dae460e',
+    //     '55cfeb3c1b053aed29291ee38483f22f78844010ea975e66c94f3724e7689114',
+    //   )}`,
+    // )
     test(random, log, end, start + 1)
   }
 }
-test(true, false, 1000)
+test(false, true, 1)
