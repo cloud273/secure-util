@@ -4,6 +4,12 @@
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "!*.ts",
+    "!*.tsx",
+    "!tsconfig.json"
+  ],
   "scripts": {
     "build": "tsc",
     "start": "ts-node test.ts"
