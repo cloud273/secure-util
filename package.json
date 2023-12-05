@@ -14,8 +14,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "crypto-js": "^4.2.0",
-    "elliptic": "^6.5.4"
+    "@noble/curves": "^1.2.0",
+    "crypto-js": "^4.2.0"
   },
   "devDependencies": {
     "@types/crypto-js": "^4.2.1",

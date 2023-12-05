@@ -1,11 +1,11 @@
-import { secp256k1 } from '@noble/curves/secp256k1'
+import { ed25519 } from '@noble/curves/ed25519'
 import { bytesToHex, hexToBytes, utf8ToBytes } from '@noble/hashes/utils'
 import { KeyPair } from './model'
 
-export class EcdsaUtil {
+export class Ed25519Util {
   public static generateKeyPair(): KeyPair {
-    const privKey = secp256k1.utils.randomPrivateKey()
-    const pubKey = secp256k1.getPublicKey(privKey)
+    const privKey = ed25519.utils.randomPrivateKey()
+    const pubKey = ed25519.getPublicKey(privKey)
     return {
       privateKey: bytesToHex(privKey),
       publicKey: bytesToHex(pubKey),
@@ -17,19 +17,15 @@ export class EcdsaUtil {
     signature: string,
     publicKey: string,
   ): boolean {
-    const signatureBytes = secp256k1.Signature.fromDER(signature)
-    return secp256k1.verify(
-      signatureBytes,
+    return ed25519.verify(
+      hexToBytes(signature),
       utf8ToBytes(message),
       hexToBytes(publicKey),
     )
   }
 
   public static signMessage(message: string, privateKey: string): string {
-    const signature = secp256k1.sign(
-      utf8ToBytes(message),
-      hexToBytes(privateKey),
-    )
-    return signature.toDERHex()
+    const signature = ed25519.sign(utf8ToBytes(message), hexToBytes(privateKey))
+    return bytesToHex(signature)
   }
 }

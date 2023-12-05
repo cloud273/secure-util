@@ -16,4 +16,5 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./aes-util"), exports);
 __exportStar(require("./ecdsa-util"), exports);
+__exportStar(require("./ed25519-util"), exports);
 __exportStar(require("./model"), exports);
