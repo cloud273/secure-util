@@ -49,8 +49,11 @@ const testEcdsa = (): boolean => {
 
 const test = (end: number, start: number = 1) => {
   if (start <= end) {
+    console.log(AESUtil.encrypt('input', 'key'))
+    console.log(
+      AESUtil.decrypt('U2FsdGVkX1/k1kWPpuCpZr+u7smQeIaF4kFY88x2dUc=', 'key'),
+    )
     console.log(`Test ${start}: ${testAes() && testEcdsa()}`)
-    // console.log(AESUtil.computeHmac(randomInput(), 'key'))
     test(end, start + 1)
   }
 }
